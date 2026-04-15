@@ -17,14 +17,14 @@ const connectDB = async () => {
     
     if (!mongoUri) {
       console.error("MongoDB Error: MONGO_URI is not set in environment variables");
-      process.exit(1);
+      return;
     }
     
     await mongoose.connect(mongoUri);
     console.log("MongoDB connected successfully");
   } catch (error) {
     console.error("MongoDB connection error:", error.message);
-    process.exit(1);
+    console.warn("Server will start without database connection. Database operations will fail.");
   }
 };
 
